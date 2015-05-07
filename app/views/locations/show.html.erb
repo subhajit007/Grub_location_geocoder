@@ -1,4 +1,4 @@
-<p id="notice"><%= notice %></p>
+
 
 <p>
   <strong>Address:</strong>
@@ -10,6 +10,21 @@
   <%= @location.latitude %>
 </p>
 
+
+<%= image_tag "http://maps.google.com/maps/api/staticmap?size=450x300&sensor=false&zoom=16&markers=#{@location.latitude}%2C#{@location.longitude}" %>
+
+<!-- it will show the near by locations. 20 miles is default but we can customise -->
+<h3>Nearby locations</h3>
+<ul>
+    <% for location in @location.nearbys(10) %>
+
+         <li><%= link_to location.address, location %>
+
+         (<%= location.distance.round(2) %> miles)</li>
+
+    <% end %>
+
+</ul>
 <p>
   <strong>Longitude:</strong>
   <%= @location.longitude %>

@@ -4,6 +4,7 @@ class LocationsController < ApplicationController
   # GET /locations
   # GET /locations.json
   def index
+    #will locate the near by location order by distance default distance is 20 miles we can customize that.
   if params[:search].present?
     @locations = Location.near(params[:search], 50, :order => :distance)
   else
